@@ -1,0 +1,26 @@
+{
+  "name": "student-discussion-forum",
+  "version": "1.0.0",
+  "description": "A student discussion forum",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MohammedAghil/Student-Discussion-Forum.git"
+  },
+  "keywords": [
+    "students",
+    "forum"
+  ],
+  "author": "Aghil",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MohammedAghil/Student-Discussion-Forum/issues"
+  },
+  "homepage": "https://github.com/MohammedAghil/Student-Discussion-Forum#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
