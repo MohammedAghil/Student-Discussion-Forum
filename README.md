@@ -52,7 +52,7 @@ Software architecture - Model-View-Controller
 
 Use case: 
 
-Sequence :
+Sequence : https://github.com/MohammedAghil/Student-Discussion-Forum/blob/main/UML%20diagrams/student_forum_class_diag.png 
 
 deployment:
  class:
