@@ -1,0 +1,7 @@
+.navbar-brand
+{
+    max-height: 50px; /* height of the navbar */
+}
+label{
+    font-weight: bold;
+}
