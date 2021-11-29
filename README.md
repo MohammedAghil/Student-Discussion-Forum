@@ -50,7 +50,7 @@ The target customers are students, professionals who can post their technical qu
 # Diagrams:
 Software architecture - Model-View-Controller
 
-Use case: 
+Use case: https://github.com/MohammedAghil/Student-Discussion-Forum/blob/main/UML%20diagrams/use_case_diagram.png 
 
 Sequence : https://github.com/MohammedAghil/Student-Discussion-Forum/blob/main/UML%20diagrams/student_forum_class_diag.png 
 
