@@ -54,7 +54,7 @@ Use case: https://github.com/MohammedAghil/Student-Discussion-Forum/blob/main/UM
 
 Sequence : https://github.com/MohammedAghil/Student-Discussion-Forum/blob/main/UML%20diagrams/student_forum_class_diag.png 
 
-deployment: 
+deployment: https://github.com/MohammedAghil/Student-Discussion-Forum/blob/main/UML%20diagrams/deployment_diag.png
 
 class: https://github.com/MohammedAghil/Student-Discussion-Forum/blob/main/UML%20diagrams/class_diagram.png 
 
