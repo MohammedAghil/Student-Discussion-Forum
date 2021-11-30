@@ -55,8 +55,10 @@ Use case: https://github.com/MohammedAghil/Student-Discussion-Forum/blob/main/UM
 Sequence : https://github.com/MohammedAghil/Student-Discussion-Forum/blob/main/UML%20diagrams/student_forum_class_diag.png 
 
 deployment:
- class:
- component:
+
+class:
+
+component: https://github.com/MohammedAghil/Student-Discussion-Forum/blob/main/UML%20diagrams/component_diagram.png 
  
 
  
