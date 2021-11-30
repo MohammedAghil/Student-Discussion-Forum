@@ -21,7 +21,12 @@
   },
   "homepage": "https://github.com/MohammedAghil/Student-Discussion-Forum#readme",
   "dependencies": {
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.0",
+    "connect-flash": "^0.1.1",
     "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "mongo-connect": "0.0.6",
     "mongoose": "^6.0.13"
   }
 }
