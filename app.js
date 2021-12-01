@@ -29,7 +29,7 @@ app.use(
         secret: "ajfeirf90aeu9eroejfoefj",
         resave: false,
         saveUninitialized: false,
-        store: new MongoStore({mongoUrl: 'mongodb://localhost:27017/demos'}),
+        store: new MongoStore({mongoUrl: db_url}),
         cookie: {maxAge: 60*60*1000}
         })
 );
