@@ -24,6 +24,7 @@ exports.login= (req, res, next)=>{
            .then(result=>{
                if(result) {
                    req.session.user = user._id;
+                   console.log(req.session);
                    req.session.name = user.firstName;
                    req.flash('success', 'Welcome, logged in');
                    console.log('logged in');
