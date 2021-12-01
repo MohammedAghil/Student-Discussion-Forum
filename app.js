@@ -14,11 +14,8 @@ const app = express();
 app.set('view engine','ejs');
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }));
-<<<<<<< Updated upstream
-=======
 app.use(morgan('dev'));
 
->>>>>>> Stashed changes
 
 mongoose.connect(db_url).then(connected=>{
     console.log('Succesfully Connected to Database');

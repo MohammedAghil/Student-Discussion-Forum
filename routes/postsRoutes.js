@@ -1,10 +1,4 @@
 const express = require('express');
-<<<<<<< Updated upstream
-const router = express.Router();
-router.get('/',(req,res,next)=>{
-    res.render('./posts/posts');
-});
-=======
 const controller = require('../controllers/postsController');
 const {isLoggedIn, isAuthor} = require('../middlewares/auth');
 const {validateId, validatePost, validateResult} = require('../middlewares/validator');
@@ -35,5 +29,4 @@ router.put('/:id', validateId, isLoggedIn, isAuthor, validatePost, validateResul
 //DELETE /stories/:id, delete the story identified by id
 router.delete('/:id', validateId, isLoggedIn, isAuthor, controller.delete);
 
->>>>>>> Stashed changes
 module.exports = router;
