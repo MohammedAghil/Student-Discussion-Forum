@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
+const morgan = require('morgan');
 const flash = require('connect-flash');
 const mainRoutes = require('./routes/mainRoutes');
 const postsRoutes = require('./routes/postsRoutes');
