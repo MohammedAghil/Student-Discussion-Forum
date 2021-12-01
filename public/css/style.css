@@ -1,37 +1,7 @@
 .navbar-brand
 {
-    max-height: 60px; /* height of the navbar */
+    max-height: 50px; /* height of the navbar */
 }
 label{
     font-weight: bold;
-}
-.footer{
-    width: 100%;
-    padding: 15px;
-    box-sizing: border-box;
-    min-height: 15px;
-    background-color: black;
-    border: thin solid #d3d3d3;
-    position: fixed;
-    bottom:0;
-    left: 0;
-  }
-  .footer a {
-    color:white;
-    margin-left: 10px;
-}
-.footer img {
-    width: 30%;
-    height: 30%;
-}
-.block{
-    display: inline-block; /* important */
-    color:white;
-}
-
-.shift-right{
-    float: right;  /* important */
-}
-h1{
-    margin-top: 40px;
 }
