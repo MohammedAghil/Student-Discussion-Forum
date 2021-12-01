@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const session = require('express-session');
+const morgan = require('morgan');
 const MongoStore = require('connect-mongo');
 const flash = require('connect-flash');
 const mainRoutes = require('./routes/mainRoutes');
@@ -14,6 +15,8 @@ const app = express();
 app.set('view engine','ejs');
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(morgan('tiny'));
+
 
 mongoose.connect(db_url).then(connected=>{
     console.log('Succesfully Connected to Database');
@@ -27,15 +30,14 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     store: MongoStore.create({ mongoUrl: 'mongodb://localhost:27017/StudentDiscussionForum'}),
-    cookie: { secure: true, maxAge:60*60*15 }
+    cookie: {maxAge:60*60*60 }
   }));
 
 app.use(flash());
 
 app.use((req,res,next)=>{
-    res.locals.user = req.session.user||null;
+    res.locals.user = req.session.user;
     res.locals.name = req.session.name||'Guest';
-
     res.locals.errorMessages = req.flash('errors');
     res.locals.successMessages = req.flash('sucess');
     next();
@@ -46,3 +48,18 @@ app.use('/',mainRoutes);
 app.use('/posts',postsRoutes);
 app.use('/users',userRoutes);
 
+app.use((req, res, next)=>{
+    let err= new Error('The server cannot locate ' + req.url);
+    err.status=404;
+    next(err);
+    
+});
+app.use((err, req, res, next)=>{
+    //console.log(err.stack)
+if (!err.status){
+    err.status=500;
+    err.message=(" Internal server Error");
+}
+res.status(err.status);
+res.render('error', {error:err});
+}); 

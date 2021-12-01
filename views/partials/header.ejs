@@ -11,9 +11,14 @@
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
+<<<<<<< HEAD
 
     <nav class="navbar navbar-expand-md navbar-light" style="background-color:#0E6655;" >
         <img class='navbar-brand'src='/images/logo.png' alt="Logo" style="background-color: aliceblue;">
+=======
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <img class='navbar-brand'src='/images/logo.png' alt="Logo">
+>>>>>>> fb7cf5cdcac858dfb9c9020671092a61fc1758b7
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -27,12 +32,34 @@
                 </li>
             </ul>
             <ul class="navbar-nav">
+                
+               <% if(!user){ %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/users/login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/users/register">Register</a>
+                    </li>
+               <% }else{ %>
                 <li class="nav-item">
+<<<<<<< HEAD
                     <a class="nav-link" href="/users/login" style="color: aliceblue;">Login</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/users/register" style="color: aliceblue;">Register</a>
+=======
+                    <a class="nav-link" href="/users/profile"><i>Welcome, <%=name%></i></a> 
+>>>>>>> fb7cf5cdcac858dfb9c9020671092a61fc1758b7
                 </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/users/profile">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/users/logout">Logout</a>
+                    </li>
+                <% } %>
+                
+                
             </ul>
         </div>
     </nav>
