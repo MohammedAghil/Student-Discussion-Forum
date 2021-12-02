@@ -1,0 +1,54 @@
+<%-include('../partials/header.ejs')%>
+<div class="container">
+  <div class="text-center">
+    <h1 class="bg-secondary text-light">View Post</h1>
+</div>
+<div class="row">
+  <div class="col-sm-8 d-flex justify-content-center">
+    <div class="card" style="margin: 10px;">
+    <% if(post.image){%>
+        <img class="card-img-top" src="<%=post.image%>" alt="Card image" style="width:100%">
+    <%}%>
+    <div class="card-body">
+      <h4 class="card-title"><%=post.title%></h4>
+      <p class="card-text"><%=post.content%></p>
+      <%if(user){%>
+        <form method="post" action="/comments">
+          <input type='hidden' name='post' value='<%=post._id%>'>
+          <div class="form-group">
+            <label for="comment">Post New Comment:</label>
+            <textarea class="form-control" rows="5" id="comment" name="content"></textarea>
+          </div>
+        <button class="btn btn-success" type="submit">Post Comment</button> 
+      </form>
+      <%}%>
+    </div>
+  </div></div>
+  <div class="col-sm-4 d-flex justify-content-center" >
+    <div class="card bg-secondary" style="margin: 0px; width: 100%;">
+      <div class="card-body">
+        <h4 class="card-title text-light">Comments</h4>
+        <%if(comments.length > 0){%>
+          <%for(var i = 0; i < comments.length; i++){%>
+            <div class="card" style="margin: 2px;">
+              <div class="card-body">
+                <h4 class="card-title"><%=comments[i].content%></h4>
+                <p class="card-text">By <%=comments[i].author.firstName%></p>
+                <form class="btn-group btn-group-sm">
+                  <td><button formmethod="get" formaction="/comments/<%=post._id%>/" class="btn btn-primary">Edit</button></td>
+                  <td><button formmethod="post" formaction="/comments/<%=comments[i]._id%>?_method=DELETE" class="btn btn-danger" name="post" value="<%=post._id%>">Delete</button></td>
+              </form>
+              </div>
+            </div>
+          <%}%>
+        <%}else{%>
+          <p>No comments yet</p>
+        <%}%>
+      </div>
+  </div>
+  </div>
+</div>
+
+
+  
+  

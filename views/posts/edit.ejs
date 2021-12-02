@@ -1,0 +1,24 @@
+<%-include('../partials/header.ejs')%>
+<div class="container">
+    <div class="text-center">
+      <h1 class="bg-secondary text-light">Edit Post</h1>
+  </div>
+    <form method="POST" action="/posts/<%=post._id%>?_method=PUT">
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" id="title" placeholder="Enter title" name="title" value="<%=post.title%>">
+      </div>
+      <select name="category" class="form-control">
+        <option value="Default">Default select</option>
+      </select>
+      <div class="form-group">
+        <label for="content">Content</label>
+        <textarea class="form-control"rows="3" id="content" name="content" class = "fixed-width" required><%=post.content%></textarea>
+      </div>
+      <div class="form-group">
+        <label for="image">Image</label>
+        <input type="url" class="form-control" id="image" placeholder="Url - image" name="image" value="<%=post.image%>">
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>

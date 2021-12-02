@@ -1,7 +1,7 @@
 const express = require('express');
 const controller = require('../controllers/postsController');
-const {isLoggedIn, isAuthor} = require('../middlewares/auth');
-const {validateId, validatePost, validateResult} = require('../middlewares/validator');
+const {isLoggedIn, isAuthor} = require('../middleware/auth');
+const {validateId, validatePost, validateResult} = require('../middleware/validator');
 
 const router = express.Router();
 

@@ -1,4 +1,6 @@
 const postModel = require('../models/post');
+const commentModel = require('../models/comment');
+
 
 exports.index = (req, res, next)=>{
     postModel.find()
@@ -7,7 +9,7 @@ exports.index = (req, res, next)=>{
 };
 
 exports.new = (req, res)=>{
-    res.render('./posts/newpost');
+    res.render('./posts/new');
 };
 
 exports.create = (req, res, next)=>{
@@ -16,7 +18,7 @@ exports.create = (req, res, next)=>{
     post.save()//insert the document to the database
     .then(posts=> {
         req.flash('success', 'posts has been created successfully');
-        res.redirect('/stories');
+        res.redirect('/posts');
     })
     .catch(err=>{
         if(err.name === 'ValidationError' ) {
@@ -30,16 +32,11 @@ exports.create = (req, res, next)=>{
 
 exports.show = (req, res, next)=>{
     let id = req.params.id;
-    postModel.findById(id).populate('author', 'firstName lastName')
-    .then(post=>{
-        if(post) {       
-            console.log(post);
-            return res.render('./posts/showpost', {post});
-        } else {
-            let err = new Error('Cannot find a posts with id ' + id);
-            err.status = 404;
-            next(err);
-        }
+    Promise.all([postModel.findById(id).populate('author', 'firstName lastName'), commentModel.find({post: id}).populate('author', 'firstName lastName')])
+    .then(results=>{
+        let [post, comments] = results;
+        console.log(comments);
+        res.render('./posts/show', {post, comments});
     })
     .catch(err=>next(err));
 };
@@ -47,19 +44,23 @@ exports.show = (req, res, next)=>{
 exports.edit = (req, res, next)=>{
     let id = req.params.id;
     postModel.findById(id)
-    .then(posts=>{
-        return res.render('./posts/edit', {posts});
+    .then(post=>{
+        return res.render('./posts/edit', {post});
     })
     .catch(err=>next(err));
 };
 
 exports.update = (req, res, next)=>{
-    let posts = req.body;
+    console.log('update');
+    let post = req.body;
     let id = req.params.id;
-
-    postModel.findByIdAndUpdate(id, posts, {useFindAndModify: false, runValidators: true})
-    .then(posts=>{
-        return res.redirect('/stories/'+id);
+    console.log(post);
+    console.log(id);
+    postModel.findByIdAndUpdate(id, post, {useFindAndModify: false, runValidators: true})
+    .then(post=>{
+        console.log(post);
+        req.flash('success', 'Post has been updated successfully');
+        return res.redirect('/posts/'+id);
     })
     .catch(err=> {
         if(err.name === 'ValidationError') {
@@ -72,10 +73,9 @@ exports.update = (req, res, next)=>{
 
 exports.delete = (req, res, next)=>{
     let id = req.params.id;
-    
     postModel.findByIdAndDelete(id, {useFindAndModify: false})
     .then(posts =>{
-        res.redirect('/stories');
+        res.redirect('/users/profile');
     })
     .catch(err=>next(err));
 };

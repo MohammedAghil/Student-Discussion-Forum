@@ -38,9 +38,15 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/users/profile"><i>Welcome, <%=name%></i></a> 
                 </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/users/profile">Profile</a>
-                    </li>
+                    <%if(isAdmin){%>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/users/admin">Admin Panel</a>
+                        </li>
+                    <%}else{%>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/users/profile">Profile</a>
+                        </li>
+                    <%}%>
                     <li class="nav-item">
                         <a class="nav-link" href="/users/logout">Logout</a>
                     </li>
@@ -48,3 +54,26 @@
             </ul>
         </div>
     </nav>
+    <div class="container text-center">
+        <% if(errorMessages.length> 0) {%>
+            <% errorMessages.forEach(message=>{%>
+                    <div class="alert alert-danger alert-dismissible fade show">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>Error!</strong>
+                        <%=message%>
+                    </div>
+                    <%});%>
+                        <%}%>
+        
+                            <% if(successMessages.length> 0) {%>
+        
+                                <% successMessages.forEach(message=>{%>
+                                        <div class="alert alert-success alert-dismissible fade show">
+                                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                            <strong>Success!</strong>
+                                            <%=message%>
+                                        </div>
+                                        <%});%>
+                                            <%}%>
+    </div>
+        
