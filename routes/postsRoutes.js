@@ -9,6 +9,8 @@ const router = express.Router();
 
 router.get('/', controller.index);
 
+router.get('/search/', controller.search);
+
 //GET /stories/new: send html form for creating a new story
 
 router.get('/new', isLoggedIn, controller.new);

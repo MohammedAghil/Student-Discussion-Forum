@@ -8,8 +8,22 @@
         <%}%>
     </div>
     <br>
+    <form method="get" action="/posts/search">
+    <div class="input-group mb-3">
+            
+            <input type="text" class="form-control" name="search" placeholder="Search the Forum">
+            <div class="input-group-append">
+            <select name="filter">
+                <option selected value="title">Title</option>
+                <option value="content">Content</option>
+                <option value="category">Category</option>
+            </select>
+            <button class="btn btn-success" type="submit">Go</button>  
+            </div>
+        </div>
+    </form>
     <div class="container">
-
+    
    
    <% let i =0; %>
    <% while (i < posts.length){%>

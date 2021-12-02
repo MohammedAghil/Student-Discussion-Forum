@@ -3,13 +3,27 @@ const commentModel = require('../models/comment');
 const categoryModel = require('../models/category');
 
 exports.index = (req, res, next)=>{
-    Promise.all([postModel.find(), categoryModel.find()])
+    
+        Promise.all([postModel.find(), categoryModel.find()])
+        .then(results=>{
+            const [posts, categories] = results;
+            res.render('./posts/posts', {posts, categories});
+        })
+        .catch(err=>next(err));
+};
+
+exports.search = (req, res, next)=>{
+    console.log('search');  
+    console.log(req.query.search);
+    let filter = req.query.filter;
+    console.log(filter);
+    Promise.all([postModel.find({filter : { "$regex": req.query.search, "$options": "i" }}), categoryModel.find()])
     .then(results=>{
         const [posts, categories] = results;
         res.render('./posts/posts', {posts, categories});
     })
     .catch(err=>next(err));
-};
+}
 
 exports.new = (req, res)=>{
     res.render('./posts/new');

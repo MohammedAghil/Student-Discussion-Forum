@@ -32,7 +32,7 @@
           <%for(var i = 0; i < comments.length; i++){%>
             <div class="card" style="margin: 2px;">
               <div class="card-body">
-                <h4 class="card-title"><%=comments[i].content%></h4>
+                <h6 class="card-title"><%=comments[i].content%></h6>
                 <p class="card-text">By <%=comments[i].author.firstName%></p>
                 <%if(comments[i].author._id==user || isAdmin){ %>
                   <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
