@@ -17,7 +17,7 @@ exports.search = (req, res, next)=>{
     console.log(req.query.search);
     let filter = req.query.filter;
     console.log(filter);
-    Promise.all([postModel.find({filter : { "$regex": req.query.search, "$options": "i" }}), categoryModel.find()])
+    Promise.all([postModel.find({title : { "$regex": req.query.search, "$options": "i" }}), categoryModel.find()])
     .then(results=>{
         const [posts, categories] = results;
         res.render('./posts/posts', {posts, categories});
