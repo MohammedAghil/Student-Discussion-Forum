@@ -46,9 +46,10 @@ exports.show = (req, res, next)=>{
 
 exports.edit = (req, res, next)=>{
     let id = req.params.id;
-    postModel.findById(id)
-    .then(post=>{
-        return res.render('./posts/edit', {post});
+    Promise.all([postModel.findById(id), categoryModel.find()])
+    .then(results=>{
+        const [post, categories] = results;
+        return res.render('./posts/edit', {post,categories});
     })
     .catch(err=>next(err));
 };
