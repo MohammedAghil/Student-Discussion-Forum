@@ -34,10 +34,15 @@
               <div class="card-body">
                 <h4 class="card-title"><%=comments[i].content%></h4>
                 <p class="card-text">By <%=comments[i].author.firstName%></p>
-                <form class="btn-group btn-group-sm">
-                  <td><button formmethod="get" formaction="/comments/<%=post._id%>/" class="btn btn-primary">Edit</button></td>
-                  <td><button formmethod="post" formaction="/comments/<%=comments[i]._id%>?_method=DELETE" class="btn btn-danger" name="post" value="<%=post._id%>">Delete</button></td>
-              </form>
+                <%if(comments[i].author._id==user || isAdmin){ %>
+                  <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                    <td> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Edit</button>
+                      <%-include('./editComment.ejs',{comment:comments[i],post:post})%> </td>
+                <form>
+                    <td><button formmethod="post" formaction="/comments/<%=comments[i]._id%>?_method=DELETE" class="btn btn-danger" name="post" value="<%=post._id%>">Delete</button></td>
+                </form>
+                </div>  
+                <%}%>
               </div>
             </div>
           <%}%>

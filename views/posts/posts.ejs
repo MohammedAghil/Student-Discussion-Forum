@@ -4,18 +4,30 @@
         <h1 class="bg-secondary text-light">Forum</h1>
         <% if(user){ %>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Create New Post</button>
-            <%-include('./new.ejs')%>
+            <%-include('./new.ejs',{categories:categories})%>
         <%}%>
     </div>
     <br>
-    <div class="row">
-        <div class="col d-flex justify-content-center">
-            <%if(posts.length>0){
-                posts.forEach(post=>{ %>
-                    <%-include('./posttile.ejs',{post})%>
-                <%})%>
+    <div class="container">
+
+   
+   <% let i =0; %>
+   <% while (i < posts.length){%>
+        <div class="row">
+            <div class="col-sm-4">
+                <%-include('./posttile.ejs',{post:posts[i]})%>
+            </div>
+            <%if(i+1< posts.length){ %>
+            <div class="col-sm-4">
+                    <%-include('./posttile.ejs',{post:posts[i+1]})%>
+            </div>
+            <%}%>
+            <%if(i+2< posts.length){ %>
+            <div class="col-sm-4">
+                    <%-include('./posttile.ejs',{post:posts[i+2]})%>
+                </div>
             <%}%>
         </div>
-    </div>
-    <p>Forum will be displayed here</p>
+   <%     i=i+3;} %> 
+</div>
 </div>

@@ -1,0 +1,27 @@
+
+<%if(posts.length>0) {%>
+    <h3>All Posts in Forum</h3>
+    <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th>Post Title</th>
+            <th>Update</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+    <%posts.forEach(post => {%>
+        <tr>
+            <td><%=post.title%></td>
+            <form>
+                <td><button formmethod="get" formaction="/posts/<%=post._id%>/edit" class="btn btn-primary">Update</button></td>
+                <td><button formmethod="post" formaction="/posts/<%=post._id%>?_method=DELETE" class="btn btn-danger">Delete</button></td>
+            </form>
+        </tr>
+    <%});
+    %>
+        </tbody>
+    </table>
+<% } else {%>
+    <p>You have not created any posts</p>
+<%}%>

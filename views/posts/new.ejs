@@ -17,7 +17,10 @@
                     <input type="text" class="form-control" id="title" placeholder="Enter title" name="title">
                   </div>
                   <select name="category" class="form-control">
-                    <option value="Default">Default select</option>
+                    <option value="Default">General</option>
+                    <%categories.forEach(category => {%>
+                      <option value="<%=category.category%>"><%=category.category%></option>
+                      <%});%>
                   </select>
                   <div class="form-group">
                     <label for="content">Content</label>

@@ -9,6 +9,7 @@ const mainRoutes = require('./routes/mainRoutes');
 const postsRoutes = require('./routes/postsRoutes');
 const userRoutes = require('./routes/userRoutes');
 const commentRoutes = require('./routes/commentRoutes');
+const categoryRoutes = require('./routes/categoryRoutes');
 const port = '3000';
 const db_url = 'mongodb://localhost:27017/StudentDiscussionForum';
 const host = 'localhost';
@@ -51,6 +52,7 @@ app.use('/',mainRoutes);
 app.use('/posts',postsRoutes);
 app.use('/users',userRoutes);
 app.use('/comments',commentRoutes);
+app.use('/categories',categoryRoutes);
 
 app.use((req, res, next)=>{
     let err = new Error('The server cannot locate' +req.url);

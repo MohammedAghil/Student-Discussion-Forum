@@ -28,3 +28,24 @@ exports.delete = (req, res, next)=>{
         res.redirect('/posts/'+postId);    })
     .catch(err=>next(err));
 };
+
+exports.update = (req, res, next)=>{
+    console.log('update comment');
+    let comment = req.body;
+    let id = req.params.id;
+    console.log(id);
+    postId = req.body.post;
+    commentModel.findByIdAndUpdate(id, comment, {useFindAndModify: false, runValidators: true})
+    .then(comment=>{
+        //console.log(post);
+        req.flash('success', 'Comment has been updated successfully');
+        return res.redirect('/posts/'+postId);
+    })
+    .catch(err=> {
+        if(err.name === 'ValidationError') {
+            req.flash('error', err.message);
+            return res.redirect('/back');
+        }
+        next(err);
+    });
+};

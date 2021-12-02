@@ -1,0 +1,31 @@
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Edit Your Comment</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+            <div class="container">
+                <form method="POST" action="/comments/<%=comment._id%>?_method=PUT">
+                    <input type="hidden" name="post" value="<%=post._id %>">
+                  <div class="form-group">
+                    <label for="content">Your Comment</label>
+                    <textarea class="form-control"rows="3" id="content" name="content" class = "fixed-width" required><%=comment.content%></textarea>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Update Comment</button>
+                </form>
+              </div>
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>

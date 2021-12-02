@@ -3,30 +3,36 @@
     <div class="text-center">
         <h1 class="bg-secondary text-light">Admin Panel</h1>
     </div>
-    <%if(posts.length>0) {%>
-        <h3>All Posts in Forum</h3>
-        <table class="table">
-            <thead class="thead-dark">
-              <tr>
-                <th>Post Title</th>
-                <th>Update</th>
-                <th>Delete</th>
-              </tr>
-            </thead>
-            <tbody>
-        <%posts.forEach(post => {%>
-            <tr>
-                <td><%=post.title%></td>
-                <form>
-                    <td><button formmethod="get" formaction="/posts/<%=post._id%>/edit" class="btn btn-primary">Update</button></td>
-                    <td><button formmethod="post" formaction="/posts/<%=post._id%>?_method=DELETE" class="btn btn-danger">Delete</button></td>
-                </form>
-            </tr>
-        <%});
-        %>
-            </tbody>
-        </table>
-   <% } else {%>
-        <p>You have not created any posts</p>
-    <%}%>
+    <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" data-toggle="tab" href="#home">Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#menu1">All Categories</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#menu2">All Forum Posts</a>
+    </li>
+  </ul>
 
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div id="home" class="container tab-pane active"><br>
+      <h3>Home</h3>
+      <p>Welcome to the Admin Panel.</p>
+    </div>
+    <div id="menu1" class="container tab-pane fade"><br>
+      <h3>Categories</h3>
+      <p>You can add , view and delete categories to the Forum</p>
+      <%- include('./admin/category_table.ejs',{categories:categories})%>
+    </div>
+    <div id="menu2" class="container tab-pane fade"><br>
+      <h3>Posts</h3>
+      <p>You can view,edit,delete all posts in the forum</p>
+      <%- include('./admin/post_table.ejs',{posts:posts})%>
+    </div>
+  </div>
+
+   
+</div>

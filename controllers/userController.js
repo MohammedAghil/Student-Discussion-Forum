@@ -1,14 +1,15 @@
 const userModel = require('../models/user');
 const postModel = require('../models/post');
+const categoryModel = require('../models/category');
 
 exports.admin = (req, res, next)=>{
     let id = req.session.user;
-    Promise.all([userModel.findById(id), postModel.find()])
+    Promise.all([userModel.findById(id), postModel.find(), categoryModel.find()])
     .then(results=>{
-        const [user, posts] = results;
+        const [user, posts,categories] = results;
         console.log(posts);
         if (user.role === 'admin'){
-            res.render('./users/admin', {user, posts});
+            res.render('./users/admin', {user, posts,categories});
         }
         else {
             let err= new Error('You are not authorized to view this page');
@@ -24,7 +25,7 @@ exports.profile = (req, res, next)=>{
     Promise.all([userModel.findById(id), postModel.find({author: id})])
     .then(results=>{
         const [user, posts] = results;
-        console.log(posts);
+        //console.log(posts);
         res.render('./users/profile', {user, posts});
     })
     .catch(err=>next(err));

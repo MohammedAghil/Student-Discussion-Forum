@@ -1,10 +1,13 @@
 const postModel = require('../models/post');
 const commentModel = require('../models/comment');
-
+const categoryModel = require('../models/category');
 
 exports.index = (req, res, next)=>{
-    postModel.find()
-    .then(posts=>res.render('./posts/posts', {posts}))
+    Promise.all([postModel.find(), categoryModel.find()])
+    .then(results=>{
+        const [posts, categories] = results;
+        res.render('./posts/posts', {posts, categories});
+    })
     .catch(err=>next(err));
 };
 
@@ -35,7 +38,7 @@ exports.show = (req, res, next)=>{
     Promise.all([postModel.findById(id).populate('author', 'firstName lastName'), commentModel.find({post: id}).populate('author', 'firstName lastName')])
     .then(results=>{
         let [post, comments] = results;
-        console.log(comments);
+        //console.log(comments);
         res.render('./posts/show', {post, comments});
     })
     .catch(err=>next(err));
@@ -58,7 +61,7 @@ exports.update = (req, res, next)=>{
     console.log(id);
     postModel.findByIdAndUpdate(id, post, {useFindAndModify: false, runValidators: true})
     .then(post=>{
-        console.log(post);
+        //console.log(post);
         req.flash('success', 'Post has been updated successfully');
         return res.redirect('/posts/'+id);
     })

@@ -22,3 +22,6 @@ label{
 h1{
   padding: 10px;
 }
+#saveButton, #contentTextArea{
+  display: none;
+}

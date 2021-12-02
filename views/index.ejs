@@ -1,5 +1,14 @@
 <%-include('./partials/header.ejs')%>
+
 <div class="container">
     <h1>Welcome to Student Discussion Forum</h1>
     <p>Here you can ....</p>
+<input type="text" id="myInput" oninput="myFunction()">
+<p id="demo"></p>
+<script>
+function myFunction() {
+  var x = document.getElementById("myInput").value;
+  document.getElementById("demo").innerHTML = "You wrote: " + x;
+}
+</script>
 </div>

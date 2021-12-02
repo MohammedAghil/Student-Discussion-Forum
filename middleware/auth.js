@@ -1,5 +1,6 @@
 const postModel = require('../models/post');
 const userModel = require('../models/user');
+const commentModel = require('../models/comment');
 
 //check if user is a guest
 exports.isGuest = (req, res, next)=>{
@@ -36,7 +37,7 @@ exports.isLoggedIn = (req, res, next) =>{
 
 //check if user is author of the story
 exports.isAuthor = (req, res, next) =>{
-    let id = req.params.id;
+    let id  = req.params.id;
     postModel.findById(id)
     .then(post=>{
         if(post) {
@@ -49,6 +50,26 @@ exports.isAuthor = (req, res, next) =>{
             }
         } else {
             let err = new Error('Cannot find a connection with id ' + req.params.id);
+            err.status = 404;
+            return next(err);
+        }
+    })
+    .catch(err=>next(err));
+};
+
+exports.isCommentAuthor = (req, res, next) =>{
+    commentModel.find({author: req.session.user})
+    .then(comment=>{
+        if(comment) {
+            if(comment.author == req.session.user || req.session.isAdmin) {
+                return next();
+            } else {
+                let err = new Error('Unauthorized to make changes to this comment resource');
+                err.status = 401;
+                return next(err);
+            }
+        } else {
+            let err = new Error('Cannot find a comment with id ' + req.params.id);
             err.status = 404;
             return next(err);
         }
